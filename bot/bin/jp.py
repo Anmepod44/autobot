@@ -1,4 +1,4 @@
-#!/home/marvin/Desktop/autobot/bot/bin/python3
+#!/home/marvin-new/Desktop/autobot/bot/bin/python3
 
 import sys
 import json
