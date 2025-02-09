@@ -71,6 +71,40 @@ def get(request: Request):
 def add_module(request: Request):
     return templates.TemplateResponse('add-module.html', {'request': request})
 
+@app.get("/module-mng")
+def add_manage(request:Request):
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT id, module_name, uploaded_time, filename, file_size, extracted_files
+            FROM modules
+        ''')
+        rows = cursor.fetchall()
+
+        # Structure the response
+        modules = [
+            {
+                "id": row[0],
+                "module_name": row[1],
+                "uploaded_time": row[2],
+                "filename": row[3],
+                "file_size": row[4],
+                "extracted_files": row[5].split(", ") if row[5] else []
+            }
+            for row in rows
+        ]
+
+    return templates.TemplateResponse('module-tables.html', {'request': request, 'modules': modules})
+
+#Endpoint to delete a specific module.
+@app.delete("/delete-module/{module_id}")
+def delete_module(module_id: int):
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM modules WHERE id = ?", (module_id,))
+        conn.commit()
+    return JSONResponse(content={"message": f"Module with ID {module_id} deleted."})
+
 @app.get("/modules")
 def get_all_modules():
     with sqlite3.connect(DB_FILE) as conn:

@@ -62,21 +62,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link me-2" href="../pages/profile.html">
+                  <a class="nav-link me-2" href="#">
                     <i class="fa fa-user opacity-6 text-dark me-1"></i>
-                    Profile
+                    Add Module
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link me-2" href="../pages/sign-up.html">
+                  <a class="nav-link me-2" href="/module-mng">
                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                    Sign Up
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="../pages/sign-in.html">
-                    <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                    Sign In
+                    Manage Modules
                   </a>
                 </li>
               </ul>
@@ -120,7 +114,7 @@
                 <form role="form" class="text-start" method="POST" action="/add-module" enctype="multipart/form-data">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Module Name</label>
-                    <input type="text" name="module_name" class="form-control">
+                    <input type="text" required name="module_name" class="form-control">
                   </div>
                   
                   <label for="fileInput" class="custom-file-upload" style="
@@ -131,7 +125,7 @@
                   cursor: pointer;
                   border-radius: 5px;
                 ">
-                  <input type="file" accept=".zip" name="file">
+                  <input type="file" required accept=".zip" name="file">
                 </label>
                 <span id="fileName" style="color: white; margin-left: 10px;">No file chosen</span>
                   
